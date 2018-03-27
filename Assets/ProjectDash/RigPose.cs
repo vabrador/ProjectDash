@@ -15,7 +15,7 @@ namespace Dash {
   }
 
   [System.Serializable]
-  public struct RigPose {
+  public class RigPose {
     [SerializeField]
     private List<Bone> _backingBoneData;
     public List<Bone> boneData {

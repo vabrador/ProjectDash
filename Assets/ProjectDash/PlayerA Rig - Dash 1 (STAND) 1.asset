@@ -9,28 +9,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b0354a3beb500548ac999c2f97b2dc3, type: 3}
-  m_Name: PlayerA Rig - Stand
+  m_Name: PlayerA Rig - Dash 1 (STAND) 1
   m_EditorClassIdentifier: 
   rigPose:
     _backingBoneData:
     - transformPath: Waist
       localPose:
-        position: {x: 0, y: 1.44, z: 0}
+        position: {x: 0, y: 1.635, z: 0}
         rotation: {x: 0, y: 0, z: 0, w: 1}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen
       localPose:
         position: {x: 0, y: 0.111, z: -0.01}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        rotation: {x: 0.03651063, y: -0, z: -0, w: 0.9993333}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen
       localPose:
-        position: {x: 0, y: 0.206, z: 0.062}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0, y: 0.255, z: 0.035}
+        rotation: {x: -0.04125139, y: -0, z: -0, w: 0.99914885}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest
       localPose:
-        position: {x: -0, y: 0.113, z: -0.008}
+        position: {x: 0, y: 0.12899996, z: 0.036000073}
         rotation: {x: 0, y: 0, z: 0, w: 1}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle
@@ -41,88 +41,88 @@ MonoBehaviour:
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Left
         Shoulder
       localPose:
-        position: {x: 0.313, y: -0.05, z: 0.04}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0.335, y: -0.097, z: 0.043}
+        rotation: {x: -0.022985945, y: -0.022503557, z: -0.6122626, w: 0.7899999}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Left
         Shoulder/Left Arm
       localPose:
-        position: {x: 0.161, y: 0.038, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0.17799997, y: -0.0079999585, z: 0}
+        rotation: {x: -0.20310211, y: 0.00000003725288, z: 0.0000000048894404, w: 0.97915757}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Left
         Shoulder/Left Arm/Left Forearm
       localPose:
         position: {x: 0.293, y: 0, z: 0}
-        rotation: {x: -0, y: 0.024675462, z: -0, w: 0.99969554}
+        rotation: {x: 0.000000059604623, y: 0.13524652, z: -0.00000012153755, w: 0.99081206}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Left
         Shoulder/Left Arm/Left Forearm/Left Hand
       localPose:
-        position: {x: 0.405, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-      localScale: {x: 1, y: 1, z: 1}
-    - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Neck
-      localPose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-      localScale: {x: 1, y: 1, z: 1}
-    - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Neck/Head
-      localPose:
-        position: {x: 0, y: 0.174, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0.426, y: 0, z: 0}
+        rotation: {x: -0.000000015305188, y: -0.029426571, z: 0.000000001037849, w: 0.999567}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Right
         Shoulder
       localPose:
-        position: {x: -0.31300002, y: -0.049999893, z: 0.040000003}
-        rotation: {x: -0, y: -0, z: -0, w: 1}
+        position: {x: -0.335, y: -0.097, z: 0.043}
+        rotation: {x: -0.022985945, y: 0.022503557, z: 0.6122626, w: 0.7899999}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Right
         Shoulder/Right Arm
       localPose:
-        position: {x: -0.161, y: 0.038, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: -0.17799997, y: -0.0079999585, z: 0}
+        rotation: {x: -0.20310211, y: -0.00000003725288, z: -0.0000000048894404, w: 0.97915757}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Right
         Shoulder/Right Arm/Right Forearm
       localPose:
         position: {x: -0.293, y: 0, z: 0}
-        rotation: {x: -0, y: 0.024675462, z: -0, w: 0.99969554}
+        rotation: {x: 0.000000059604623, y: -0.13524652, z: 0.00000012153755, w: 0.99081206}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Right
         Shoulder/Right Arm/Right Forearm/Right Hand
       localPose:
-        position: {x: -0.405, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: -0.426, y: 0, z: 0}
+        rotation: {x: -0.000000015305188, y: 0.029426571, z: -0.000000001037849, w: 0.999567}
+      localScale: {x: 1, y: 1, z: 1}
+    - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Neck
+      localPose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: -0.10839015, y: -0, z: -0, w: 0.99410844}
+      localScale: {x: 1, y: 1, z: 1}
+    - transformPath: Waist/Spine1 Lower Abdomen/Spine2 Upper Abdomen/Spine3 Chest/Clavicle/Neck/Head
+      localPose:
+        position: {x: 0, y: 0.257, z: 0}
+        rotation: {x: 0.082631454, y: -0, z: -0, w: 0.9965802}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Left UpperLeg
       localPose:
-        position: {x: 0.27, y: -0.083, z: 0.017}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0.27, y: -0.083, z: 0.068}
+        rotation: {x: -0.01745245, y: 0, z: 0, w: 0.99984777}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Left UpperLeg/Left LowerLeg
       localPose:
-        position: {x: 0, y: -0.479, z: -0.016}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0, y: -0.624, z: -0.035}
+        rotation: {x: -0.043619405, y: 0, z: 0, w: 0.9990483}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Left UpperLeg/Left LowerLeg/Left Foot
       localPose:
-        position: {x: 0, y: -0.594, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: 0, y: -0.591, z: -0.065}
+        rotation: {x: 0.0610501, y: 0.0021639953, z: 0.00065733807, w: 0.99813217}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Right UpperLeg
       localPose:
-        position: {x: -0.27, y: -0.083, z: 0.017}
-        rotation: {x: -0, y: -0, z: -0, w: 1}
+        position: {x: -0.27, y: -0.083, z: 0.068}
+        rotation: {x: -0.01745245, y: -0, z: -0, w: 0.99984777}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Right UpperLeg/Right LowerLeg
       localPose:
-        position: {x: 0, y: -0.479, z: -0.016}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: -0, y: -0.624, z: -0.035}
+        rotation: {x: -0.043619405, y: -0, z: -0, w: 0.9990483}
       localScale: {x: 1, y: 1, z: 1}
     - transformPath: Waist/Right UpperLeg/Right LowerLeg/Right Foot
       localPose:
-        position: {x: 0, y: -0.594, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
+        position: {x: -0, y: -0.591, z: -0.065}
+        rotation: {x: 0.0610501, y: -0.0021639953, z: -0.00065733807, w: 0.99813217}
       localScale: {x: 1, y: 1, z: 1}
