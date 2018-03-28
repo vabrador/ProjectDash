@@ -10,6 +10,9 @@ namespace Dash {
 
   public class PlayerAController : MonoBehaviour {
 
+    [Header("Camera (optional)")]
+    public Transform cameraTransform;
+
     [Header("Movement")]
     public float speed = 120f;
     public float movementDecay = 14f;
@@ -36,6 +39,15 @@ namespace Dash {
       var moveVec = getInputMovementVector(out moveVecMag);
       var moveVecDir = (moveVecMag > 0.01f ? moveVec / moveVecMag : curFacing);
       var isMovingIntended = moveVecMag > 0.01f;
+      if (cameraTransform != null && isMovingIntended) {
+        var camXZToPlayer
+          = this.transform.position.ProjectedOnPlane(this.transform.up)
+            - cameraTransform.position.ProjectedOnPlane(this.transform.up);
+        var camXZAngle = Vector3.SignedAngle(camXZToPlayer, Vector3.forward, Vector3.up);
+        var camRotation = Quaternion.AngleAxis(-camXZAngle, Vector3.up);
+        moveVec = (camRotation * moveVec.AsXZ()).xz();
+        moveVecDir = (camRotation * moveVecDir.AsXZ()).xz();
+      }
       if (drawDebug) {
         DebugPing.Line("moveVec", this.transform.position,
           this.transform.position + moveVec.AsXZ(), LeapColor.red);
