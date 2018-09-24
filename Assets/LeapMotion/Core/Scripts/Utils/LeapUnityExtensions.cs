@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -143,6 +143,14 @@ namespace Leap.Unity {
       LeapTransform transform = new LeapTransform(t.position.ToVector(), t.rotation.ToLeapQuaternion(), scale);
       transform.MirrorZ(); // Unity is left handed.
       return transform;
+    }
+
+    /**
+     * Transforms a Unity Transform object by a Unity Matrix4x4.
+     */
+    public static void Transform(this Transform thisTransform, Matrix4x4 transform) {
+      Matrix4x4 newTransform = transform * thisTransform.localToWorldMatrix;
+      thisTransform.position = newTransform.GetVector3(); thisTransform.rotation = newTransform.GetQuaternion();
     }
   }
 }

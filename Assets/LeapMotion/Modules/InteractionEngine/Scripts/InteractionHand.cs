@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -105,6 +105,9 @@ namespace Leap.Unity.Interaction {
     /// </summary>
     private Hand _hand;
 
+
+
+    public Transform headTransform;
     #endregion
 
     #region Unity Events
@@ -548,6 +551,10 @@ namespace Leap.Unity.Interaction {
 
     /// <summary> Reconnects and resets all the joints in the hand. </summary>
     private void resetContactBoneJoints() {
+      // If contact bones array is null, there's nothing to reset. This can happen if
+      // the controller is disabled before it had a chance to initialize contact.
+      if (_contactBones == null) return;
+
       // If the palm contact bone is null, we can't reset bone joints.
       if (_contactBones[NUM_FINGERS * BONES_PER_FINGER] == null) return;
 
@@ -717,7 +724,8 @@ namespace Leap.Unity.Interaction {
     }
 
     protected override void fixedUpdateGraspingState() {
-      grabClassifier.FixedUpdateClassifierHandState();
+      //Feed Camera Transform in for Projective Grabbing Hack (details inside)
+      grabClassifier.FixedUpdateClassifierHandState(headTransform);
     }
 
     protected override void onGraspedObjectForciblyReleased(IInteractionBehaviour objectToBeReleased) {

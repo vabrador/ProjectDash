@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -336,31 +336,25 @@ namespace Leap.Unity {
         currIndex--;
         char c = value[currIndex];
 
-        if (currFunc != null) {
-          if (currFunc(c)) {
-            continue;
-          } else {
-            currFunc = null;
-          }
+        if (currFunc != null && currFunc(c)) {
+          continue;
         }
 
-        if (currFunc == null) {
-          if (curr != "") {
-            result = " " + curr.Capitalize() + result;
-            curr = "";
-          }
+        if (curr != "") {
+          result = " " + curr.Capitalize() + result;
+          curr = "";
+        }
 
-          if (acronymFunc(c)) {
-            currFunc = acronymFunc;
-          } else if (wordFunc(c)) {
-            currFunc = wordFunc;
-          } else if (numberFunc(c)) {
-            currFunc = numberFunc;
-          } else if (fluffFunc(c)) {
-            currFunc = fluffFunc;
-          } else {
-            throw new Exception("Unexpected state, no function matched character " + c);
-          }
+        if (acronymFunc(c)) {
+          currFunc = acronymFunc;
+        } else if (wordFunc(c)) {
+          currFunc = wordFunc;
+        } else if (numberFunc(c)) {
+          currFunc = numberFunc;
+        } else if (fluffFunc(c)) {
+          currFunc = fluffFunc;
+        } else {
+          throw new Exception("Unexpected state, no function matched character " + c);
         }
       }
 
@@ -840,6 +834,13 @@ namespace Leap.Unity {
 
     #region Quaternion Utils
 
+    public static bool ContainsNaN(this Quaternion q) {
+      return float.IsNaN(q.x)
+          || float.IsNaN(q.y)
+          || float.IsNaN(q.z)
+          || float.IsNaN(q.w);
+    }
+
     /// <summary>
     /// Converts the quaternion into an axis and an angle and returns the vector
     /// axis * angle. Angle magnitude is measured in degrees, not radians; this requires
@@ -1056,7 +1057,7 @@ namespace Leap.Unity {
 #else
       Matrix4x4 toReturn = m;
       for (int i = 0; i < 4; i++) {
-        toReturn.setColumn(i, toReturn.GetColumn(i) * f);
+        toReturn.SetColumn(i, toReturn.GetColumn(i) * f);
       }
       return toReturn;
 #endif
@@ -1931,6 +1932,29 @@ namespace Leap.Unity {
     /// </summary>
     public static float CompMin(this Vector4 v) {
       return Mathf.Min(Mathf.Min(Mathf.Min(v.x, v.y), v.z), v.w);
+    }
+
+    /// <summary>
+    /// Returns a new Vector2 via component-wise Lerp.
+    /// </summary>
+    public static Vector2 CompLerp(this Vector2 A, Vector2 B, Vector2 Ts) {
+      return new Vector2(Mathf.Lerp(A.x, B.x, Ts.x), Mathf.Lerp(A.y, B.y, Ts.y));
+    }
+
+    /// <summary>
+    /// Returns a new Vector3 via component-wise Lerp.
+    /// </summary>
+    public static Vector3 CompLerp(this Vector3 A, Vector3 B, Vector3 Ts) {
+      return new Vector3(Mathf.Lerp(A.x, B.x, Ts.x), Mathf.Lerp(A.y, B.y, Ts.y),
+        Mathf.Lerp(A.z, B.z, Ts.z));
+    }
+
+    /// <summary>
+    /// Returns a new Vector4 via component-wise Lerp.
+    /// </summary>
+    public static Vector4 CompLerp(this Vector4 A, Vector4 B, Vector4 Ts) {
+      return new Vector4(Mathf.Lerp(A.x, B.x, Ts.x), Mathf.Lerp(A.y, B.y, Ts.y),
+        Mathf.Lerp(A.z, B.z, Ts.z), Mathf.Lerp(A.w, B.w, Ts.w));
     }
 
     #endregion

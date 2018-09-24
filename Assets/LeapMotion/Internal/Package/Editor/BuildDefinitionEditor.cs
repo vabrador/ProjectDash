@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -22,6 +22,9 @@ namespace Leap.Unity.Packaging {
 
       specifyCustomDecorator("_options", prop => drawExportFolder(prop, "Build", "Build Folder"));
       specifyCustomDrawer("_options", drawOptions);
+
+      specifyCustomDecorator("_playerSettings", decorateBuildPlayerSettings);
+      specifyCustomPostDecorator("_playerSettings", postDecorateBuildPlayerSettings);
 
       createList("_scenes", drawScene);
       createList("_targets", drawBuildTarget);
@@ -66,6 +69,16 @@ namespace Leap.Unity.Packaging {
       }
 
       EditorGUILayout.EndHorizontal();
+    }
+
+    private void decorateBuildPlayerSettings(SerializedProperty prop) {
+      var shouldDisable =
+        !serializedObject.FindProperty("_useSpecificPlayerSettings").boolValue;
+      
+      EditorGUI.BeginDisabledGroup(shouldDisable);
+    }
+    private void postDecorateBuildPlayerSettings(SerializedProperty prop) {
+      EditorGUI.EndDisabledGroup();
     }
   }
 }

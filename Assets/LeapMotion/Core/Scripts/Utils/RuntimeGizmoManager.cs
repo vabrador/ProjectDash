@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -902,8 +902,8 @@ namespace Leap.Unity.RuntimeGizmos {
       var r = radialStartDirection * radius;
       for (int i = 0; i < numCircleSegments + 1; i++) {
         var nextR = Q * r;
-        var onPlaneAngle = Vector3.SignedAngle(r, onPlaneDir, circleNormal);
-        var nextOnPlaneAngle = Vector3.SignedAngle(nextR, onPlaneDir, circleNormal);
+        var onPlaneAngle = Infix.Infix.SignedAngle(r, onPlaneDir, circleNormal);
+        var nextOnPlaneAngle = Infix.Infix.SignedAngle(nextR, onPlaneDir, circleNormal);
         var front = onPlaneAngle < 0;
         var nextFront = nextOnPlaneAngle < 0;
 

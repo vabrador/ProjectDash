@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -14,6 +14,7 @@ using Leap.Unity.Query;
 
 namespace Leap.Unity.Space {
 
+  [ExecuteInEditMode]
   public abstract class LeapSpace : LeapSpaceAnchor {
     private static List<LeapSpace> _enabledSpaces = new List<LeapSpace>();
     public static List<LeapSpace> allEnabled {

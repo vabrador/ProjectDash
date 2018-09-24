@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) Leap Motion, Inc. 2011-2018.                                 *
- * Leap Motion proprietary and  confidential.                                 *
+ * Leap Motion proprietary and confidential.                                  *
  *                                                                            *
  * Use subject to the terms of the Leap Motion SDK Agreement available at     *
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
@@ -33,6 +33,34 @@ namespace Leap.Unity.Packaging {
     [EnumFlags]
     [SerializeField]
     protected BuildOptions _options = BuildOptions.None;
+
+    [Tooltip("If disabled, the editor's current Player Settings will be used. " +
+      "Not all Player Settings are supported. Any unspecified settings are " +
+      "inherited from the editor's current Player Settings.")]
+    [SerializeField]
+    protected bool _useSpecificPlayerSettings = true;
+
+    [System.Serializable]
+    public struct BuildPlayerSettings {
+      public FullScreenMode fullScreenMode;
+      public int defaultScreenWidth;
+      public int defaultScreenHeight;
+      public bool resizableWindow;
+      public static BuildPlayerSettings Default() {
+        return new BuildPlayerSettings() {
+          fullScreenMode = FullScreenMode.Windowed,
+          defaultScreenWidth = 800,
+          defaultScreenHeight = 500,
+          resizableWindow = true
+        };
+      }
+    }
+    [Tooltip("Only used when Use Specific Player Settings is true. " +
+      "Not all Player Settings are supported. Any unspecified settings " +
+      "are inherited from the editor's current Player Settings.")]
+    [SerializeField]
+    protected BuildPlayerSettings _playerSettings =
+      BuildPlayerSettings.Default();
 
     [Tooltip("The scenes that should be included in this build, " + "" +
              "in the order they should be included.")]
@@ -69,7 +97,10 @@ namespace Leap.Unity.Packaging {
         }
       }
 
-      string fullPath = Path.Combine(exportFolder, DefinitionName);
+      string fullPath = Path.Combine(
+        Path.Combine(exportFolder, _definitionName),
+        DefinitionName
+      );
 
       var buildOptions = new BuildPlayerOptions() {
         scenes = _scenes.Where(s => s != null).
@@ -81,7 +112,43 @@ namespace Leap.Unity.Packaging {
       foreach (var target in _targets) {
         buildOptions.target = target;
         buildOptions.locationPathName = fullPath + "." + getFileSuffix(target);
-        BuildPipeline.BuildPlayer(buildOptions);
+        
+        if (_useSpecificPlayerSettings) {
+          var origFullscreenMode = PlayerSettings.fullScreenMode;
+          var origDefaultWidth = PlayerSettings.defaultScreenWidth;
+          var origDefaultHeight = PlayerSettings.defaultScreenHeight;
+          var origResizableWindow = PlayerSettings.resizableWindow;
+          try {
+            PlayerSettings.fullScreenMode = _playerSettings.fullScreenMode;
+            PlayerSettings.defaultScreenWidth = _playerSettings.defaultScreenWidth;
+            PlayerSettings.defaultScreenHeight =
+            _playerSettings.defaultScreenHeight;
+            PlayerSettings.resizableWindow = _playerSettings.resizableWindow;
+
+            BuildPipeline.BuildPlayer(buildOptions);
+          }
+          finally {
+            PlayerSettings.fullScreenMode = origFullscreenMode;
+            PlayerSettings.defaultScreenWidth = origDefaultWidth;
+            PlayerSettings.defaultScreenHeight = origDefaultHeight;
+            PlayerSettings.resizableWindow = origResizableWindow;
+          }
+        }
+        else {
+          BuildPipeline.BuildPlayer(buildOptions);
+        }
+
+        if (_options.HasFlag(BuildOptions.EnableHeadlessMode)) {
+          // The -batchmode flag is the only important part of headless mode
+          // for Windows. The EnableHeadlessMode build option only actually has
+          // an effect on Linux standalone builds.
+          // Here, it's being used to mark the _intention_ of a headless build
+          // for Windows builds.
+          var text = "\"" + _definitionName + ".exe" + "\" -batchmode";
+          var headlessModeBatPath = Path.Combine(Path.Combine(exportFolder,
+            _definitionName), "Run Headless Mode.bat");
+          File.WriteAllText(headlessModeBatPath, text);
+        }
       }
 
       Process.Start(exportFolder);

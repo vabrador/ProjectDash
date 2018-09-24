@@ -56,7 +56,7 @@ namespace Dash {
       if (playerTransform == null) return;
 
       var lookTargetPose = playerTransform.ToPose() * targetOffset;
-      var camPose = this.transform.ToPose();
+      //var camPose = this.transform.ToPose();
 
       // mouse movement changes _pivotRot
       var mouseMove = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -96,7 +96,7 @@ namespace Dash {
 
     public static Vector3 RotatedAround(this Vector3 v, Vector3 point, Vector3 axis, float angle) {
       var vFromPoint = v - point;
-      var rotated = Quaternion.AngleAxis(angle, axis) * vFromPoint;
+      //var rotated = Quaternion.AngleAxis(angle, axis) * vFromPoint;
       return point + vFromPoint;
     }
 
